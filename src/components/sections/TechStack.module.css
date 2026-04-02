@@ -1,0 +1,219 @@
+.section {
+  padding: 4rem 1.25rem;
+  background: transparent;
+}
+
+.inner {
+  max-width: var(--layout-max);
+  margin: 0 auto;
+}
+
+.panel {
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 0.9rem 1.2rem;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+}
+
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  flex-shrink: 0;
+}
+
+.dot:nth-child(1) {
+  background: #f87171;
+}
+
+.dot:nth-child(2) {
+  background: #fbbf24;
+}
+
+.dot:nth-child(3) {
+  background: #34d399;
+}
+
+.panelBody {
+  padding: 2.5rem 1.5rem 2.65rem;
+}
+
+@media (min-width: 768px) {
+  .panelBody {
+    padding: 2.85rem 2rem 3rem;
+  }
+}
+
+.intro {
+  max-width: 52rem;
+  margin-bottom: 2.35rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 3.2vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin: 0 0 0.85rem;
+}
+
+.lead {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.68;
+  color: var(--color-text-muted);
+}
+
+/* Single horizontal row; seamless loop when motion is allowed */
+.marquee {
+  position: relative;
+  overflow: hidden;
+  margin-inline: -1.5rem;
+  padding-block: 0.5rem;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 6%,
+    black 94%,
+    transparent
+  );
+}
+
+@media (min-width: 768px) {
+  .marquee {
+    margin-inline: -2rem;
+  }
+}
+
+.track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: 1.25rem;
+  width: max-content;
+  padding-inline: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .track {
+    padding-inline: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .track {
+    animation: tech-marquee 38s linear infinite;
+  }
+
+  .marquee:hover .track {
+    animation-play-state: paused;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    overflow-x: auto;
+    overflow-y: hidden;
+    mask-image: none;
+    scrollbar-width: thin;
+  }
+
+  .track {
+    animation: none;
+  }
+}
+
+@keyframes tech-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.95rem;
+  flex-shrink: 0;
+  min-width: 10.75rem;
+  padding: 1.55rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .item:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 32%, var(--color-border));
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+    transform: translateY(-2px);
+  }
+
+  .item:hover .logo {
+    filter: none;
+  }
+}
+
+.logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 82px;
+}
+
+.logoWrapWide {
+  width: 136px;
+  height: 62px;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  /* Devicon SVGs are full-color — grayscale + lift reads as light monochrome on dark UI */
+  filter: grayscale(1) brightness(1.72) contrast(1.05);
+  transition: filter 0.35s ease;
+}
+
+.logoWide {
+  width: 120px;
+  height: 44px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    filter: none;
+  }
+}
+
+.label {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.25;
+  white-space: nowrap;
+}

@@ -1,11 +1,51 @@
+import { useLayoutEffect, useRef, useState } from 'react'
 import { site } from '../../content/site'
 import { Button } from '../ui/Button'
 import styles from './Hero.module.css'
 
 export function Hero() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const [reduceMotion] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
+  const [inView, setInView] = useState(true)
+
+  useLayoutEffect(() => {
+    const section = sectionRef.current
+    if (!section) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        setInView(!!entry?.isIntersecting)
+      },
+      { threshold: 0.12, rootMargin: '0px' },
+    )
+    obs.observe(section)
+    return () => obs.disconnect()
+  }, [])
+
+  useLayoutEffect(() => {
+    const grid = gridRef.current
+    if (!grid) return
+    if (reduceMotion) {
+      grid.classList.remove(styles.gridPlay)
+      return
+    }
+    if (inView) {
+      grid.classList.remove(styles.gridPlay)
+      void grid.offsetWidth
+      grid.classList.add(styles.gridPlay)
+    } else {
+      grid.classList.remove(styles.gridPlay)
+    }
+  }, [inView, reduceMotion])
+
+  const { pipeline } = site.hero
+  const lastIndex = pipeline.steps.length - 1
+
   return (
-    <section className={styles.hero} aria-labelledby="hero-heading">
-      <div className={styles.grid}>
+    <section ref={sectionRef} className={styles.hero} aria-labelledby="hero-heading">
+      <div ref={gridRef} className={styles.grid}>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>{site.hero.eyebrow}</p>
           <h1 id="hero-heading" className={styles.headline}>
@@ -29,18 +69,22 @@ export function Hero() {
               <span className={styles.dot} />
             </div>
             <div className={styles.cardBody}>
-              <div className={styles.metric}>
-                <span className={styles.metricLabel}>Deployments / week</span>
-                <span className={styles.metricValue}>42</span>
-              </div>
-              <div className={styles.bars}>
-                <div className={styles.bar} style={{ height: '40%' }} />
-                <div className={styles.bar} style={{ height: '65%' }} />
-                <div className={styles.bar} style={{ height: '50%' }} />
-                <div className={styles.bar} style={{ height: '88%' }} />
-                <div className={styles.bar} style={{ height: '72%' }} />
-              </div>
-              <p className={styles.cardCaption}>Illustrative — your metrics, your tools.</p>
+              <p className={styles.pipelineTitle}>{pipeline.title}</p>
+              <ol className={styles.pipeline}>
+                {pipeline.steps.map((step, index) => (
+                  <li key={step.phase} className={styles.stepRow}>
+                    <div className={styles.stepRail}>
+                      <span className={styles.stepNode} />
+                      {index < lastIndex ? <span className={styles.stepConnector} /> : null}
+                    </div>
+                    <div className={styles.stepText}>
+                      <span className={styles.phase}>{step.phase}</span>
+                      <span className={styles.detail}>{step.detail}</span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+              <p className={styles.cardCaption}>{pipeline.caption}</p>
             </div>
           </div>
         </div>

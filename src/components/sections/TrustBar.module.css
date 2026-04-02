@@ -1,16 +1,58 @@
 .section {
-  padding: 4rem 1.5rem;
-  background: linear-gradient(
-    165deg,
-    color-mix(in srgb, var(--color-accent) 8%, var(--color-surface)) 0%,
-    var(--color-surface) 50%
-  );
-  border-block: 1px solid var(--color-border);
+  padding: 4rem 1.25rem;
+  background: transparent;
 }
 
 .inner {
   max-width: var(--layout-max);
   margin: 0 auto;
+}
+
+.panel {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+  flex-shrink: 0;
+}
+
+.dot:nth-child(1) {
+  background: #f87171;
+}
+
+.dot:nth-child(2) {
+  background: #fbbf24;
+}
+
+.dot:nth-child(3) {
+  background: #34d399;
+}
+
+.panelBody {
+  padding: 2rem 1.35rem 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .panelBody {
+    padding: 2.25rem 1.75rem 2.5rem;
+  }
 }
 
 .intro {
@@ -53,10 +95,22 @@
   padding: 1.25rem;
   border-radius: 12px;
   border: 1px solid var(--color-border);
-  background: var(--color-surface-elevated);
+  background: var(--color-bg);
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
+  transition:
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .stat:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 30%, var(--color-border));
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .statValue {
@@ -88,5 +142,5 @@
   border-radius: 999px;
   border: 1px solid var(--color-border);
   color: var(--color-text-muted);
-  background: var(--color-bg);
+  background: var(--color-surface);
 }

@@ -1,0 +1,234 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(56px);
+  will-change: transform, opacity;
+  opacity: 0.78;
+}
+
+.blob1 {
+  width: min(78vw, 580px);
+  height: min(78vw, 580px);
+  top: -12%;
+  left: 2%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent-bright) 62%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 38%, transparent) 42%,
+    transparent 62%
+  );
+  animation: nx-ambient-orb-a 11s ease-in-out infinite alternate;
+}
+
+.blob2 {
+  width: min(92vw, 680px);
+  height: min(92vw, 680px);
+  bottom: -32%;
+  right: -18%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, #60a5fa 40%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent) 32%, transparent) 48%,
+    transparent 68%
+  );
+  opacity: 0.68;
+  animation: nx-ambient-orb-b 15s ease-in-out infinite alternate;
+}
+
+.blob3 {
+  width: min(58vw, 440px);
+  height: min(58vw, 440px);
+  top: 32%;
+  left: 38%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent-bright) 48%, transparent) 0%,
+    transparent 55%
+  );
+  opacity: 0.58;
+  animation: nx-ambient-orb-c 8s ease-in-out infinite alternate;
+}
+
+/* Extra glow lower-left — visible mid-page when scrolling */
+.blob4 {
+  width: min(70vw, 520px);
+  height: min(70vw, 520px);
+  bottom: 8%;
+  left: -14%;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--color-accent) 45%, transparent) 0%,
+    color-mix(in srgb, var(--color-accent-bright) 22%, transparent) 50%,
+    transparent 65%
+  );
+  opacity: 0.52;
+  animation: nx-ambient-orb-d 19s ease-in-out infinite alternate;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent-bright) 16%, transparent) 1px, transparent 1px),
+    linear-gradient(0deg, color-mix(in srgb, var(--color-accent-bright) 16%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.52;
+  /* Softer mask so the grid reads across the whole viewport as you scroll */
+  mask-image: radial-gradient(ellipse 140% 100% at 50% 40%, black 0%, transparent 82%);
+  animation: nx-ambient-mesh 26s linear infinite;
+}
+
+.beam {
+  position: absolute;
+  inset: -15%;
+  background: linear-gradient(
+    118deg,
+    transparent 34%,
+    color-mix(in srgb, var(--color-accent-bright) 32%, transparent) 48%,
+    transparent 62%
+  );
+  opacity: 0.58;
+  mix-blend-mode: screen;
+  animation: nx-ambient-beam 9s ease-in-out infinite alternate;
+}
+
+.beamAlt {
+  position: absolute;
+  inset: -20%;
+  background: linear-gradient(
+    72deg,
+    transparent 40%,
+    color-mix(in srgb, #60a5fa 18%, transparent) 50%,
+    transparent 58%
+  );
+  opacity: 0.35;
+  mix-blend-mode: screen;
+  animation: nx-ambient-beam-alt 13s ease-in-out infinite alternate;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 95% at 50% 48%, transparent 0%, var(--color-bg) 90%);
+  opacity: 0.58;
+}
+
+@keyframes nx-ambient-orb-a {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(22%, 26%) scale(1.18);
+  }
+}
+
+@keyframes nx-ambient-orb-b {
+  0% {
+    transform: translate(0, 0) scale(1.08);
+  }
+  100% {
+    transform: translate(-22%, -16%) scale(1);
+  }
+}
+
+@keyframes nx-ambient-orb-c {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.42;
+  }
+  100% {
+    transform: translate(-14%, 18%) scale(1.28);
+    opacity: 0.78;
+  }
+}
+
+@keyframes nx-ambient-orb-d {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(18%, -12%) scale(1.14);
+  }
+}
+
+@keyframes nx-ambient-mesh {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+@keyframes nx-ambient-beam {
+  0% {
+    transform: translate(-10%, -6%) rotate(-1deg);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate(12%, 10%) rotate(4deg);
+    opacity: 0.72;
+  }
+}
+
+@keyframes nx-ambient-beam-alt {
+  0% {
+    transform: translate(8%, 4%) rotate(1deg);
+    opacity: 0.28;
+  }
+  100% {
+    transform: translate(-6%, -8%) rotate(-2deg);
+    opacity: 0.45;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob1,
+  .blob2,
+  .blob3,
+  .blob4,
+  .grid,
+  .beam,
+  .beamAlt {
+    animation: none;
+  }
+
+  .blob1 {
+    transform: translate(6%, 10%) scale(1.06);
+  }
+
+  .blob2 {
+    transform: translate(-8%, -6%) scale(1.02);
+  }
+
+  .blob3 {
+    transform: translate(-4%, 6%) scale(1.1);
+    opacity: 0.55;
+  }
+
+  .blob4 {
+    transform: translate(8%, -4%) scale(1.05);
+  }
+
+  .grid {
+    background-position: 0 0;
+  }
+
+  .beam {
+    transform: translate(1%, 1%);
+    opacity: 0.42;
+  }
+
+  .beamAlt {
+    transform: translate(-2%, -1%);
+    opacity: 0.3;
+  }
+}

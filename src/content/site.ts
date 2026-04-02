@@ -8,6 +8,7 @@ export const site = {
     { label: 'Services', href: '#services' },
     { label: 'How we work', href: '#process' },
     { label: 'Why Nexora', href: '#trust' },
+    { label: 'Tech stack', href: '#tech' },
     { label: 'Contact', href: '#contact' },
   ],
 
@@ -18,6 +19,16 @@ export const site = {
       'From cloud migrations to dedicated squads, we embed with your business outcomes—not billable hours alone.',
     primaryCta: 'Book a discovery call',
     secondaryCta: 'View capabilities',
+    pipeline: {
+      title: 'Delivery flow',
+      steps: [
+        { phase: 'Plan', detail: 'Discovery, risks, and a written assessment before commitment.' },
+        { phase: 'Build', detail: 'Iterative delivery with visible increments and clear owners.' },
+        { phase: 'Deploy', detail: 'CI/CD, IaC, and controlled releases to your environments.' },
+        { phase: 'Operate', detail: 'Monitoring, SLAs, and runbooks your team can execute.' },
+      ],
+      caption: 'From first workshop to systems you can run without us.',
+    },
   },
 
   services: [
@@ -42,6 +53,30 @@ export const site = {
         'Hardening, access reviews, and evidence packs aligned to SOC 2 / ISO-style programs—without slowing delivery.',
     },
   ],
+
+  /**
+   * Devicon paths under icons/{path}.svg (https://devicon.dev/) — pinned on jsDelivr.
+   * `wide`: wider slot for wordmark-style marks (e.g. AWS).
+   */
+  techStack: {
+    title: 'Technology we build with',
+    subtitle:
+      'Languages, frameworks, clouds, data stores, and containers our teams use in production—from APIs and web apps to mobile clients and regulated environments.',
+    items: [
+      { name: 'Node.js', icon: 'nodejs/nodejs-original' },
+      { name: 'React.js', icon: 'react/react-original' },
+      { name: 'Angular', icon: 'angular/angular-original' },
+      { name: 'Flutter', icon: 'flutter/flutter-original' },
+      { name: 'AWS', icon: 'amazonwebservices/amazonwebservices-plain-wordmark', wide: true },
+      { name: 'Azure', icon: 'azure/azure-original' },
+      { name: 'React Native', icon: 'react/react-original' },
+      { name: 'Java', icon: 'java/java-original' },
+      { name: 'MongoDB', icon: 'mongodb/mongodb-original' },
+      { name: 'PostgreSQL', icon: 'postgresql/postgresql-original' },
+      // { name: 'Docker', icon: 'docker/docker-original' },
+      // { name: 'Kubernetes', icon: 'kubernetes/kubernetes-plain' },
+    ],
+  },
 
   process: {
     title: 'How we work with you',

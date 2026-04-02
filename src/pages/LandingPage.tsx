@@ -1,9 +1,11 @@
 import { Seo } from '../components/Seo'
+import { Reveal } from '../components/ui/Reveal'
 import { Header } from '../components/layout/Header'
 import { Footer } from '../components/layout/Footer'
 import { Hero } from '../components/sections/Hero'
 import { Services } from '../components/sections/Services'
 import { Process } from '../components/sections/Process'
+import { TechStack } from '../components/sections/TechStack'
 import { TrustBar } from '../components/sections/TrustBar'
 import { Testimonial } from '../components/sections/Testimonial'
 import { CtaSection } from '../components/sections/CtaSection'
@@ -16,13 +18,28 @@ export function LandingPage() {
       <Header />
       <main id="main-content">
         <Hero />
-        <Services />
-        <Process />
-        <TrustBar />
-        <Testimonial />
-        <CtaSection />
+        <Reveal>
+          <Services />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <Process />
+        </Reveal>
+        <Reveal>
+          <TechStack />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <TrustBar />
+        </Reveal>
+        <Reveal delayMs={40}>
+          <Testimonial />
+        </Reveal>
+        <Reveal>
+          <CtaSection />
+        </Reveal>
       </main>
-      <Footer />
+      <Reveal>
+        <Footer />
+      </Reveal>
     </>
   )
 }

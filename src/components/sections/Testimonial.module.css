@@ -11,6 +11,18 @@
   padding: 2rem 2rem 2.25rem;
   position: relative;
   overflow: hidden;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .inner:hover {
+    border-color: color-mix(in srgb, var(--color-accent) 32%, var(--color-border));
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28);
+    transform: translateY(-2px);
+  }
 }
 
 .inner::before {
