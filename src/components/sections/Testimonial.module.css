@@ -1,0 +1,55 @@
+.section {
+  padding: 3rem 1.5rem;
+  max-width: var(--layout-max);
+  margin: 0 auto;
+}
+
+.inner {
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-elevated);
+  padding: 2rem 2rem 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-accent-bright), var(--color-accent));
+}
+
+.quote {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.quote p {
+  margin: 0 0 1.25rem;
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--color-text);
+  font-style: italic;
+}
+
+.quote footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.author {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text);
+}
+
+.role {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}

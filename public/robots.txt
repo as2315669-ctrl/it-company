@@ -1,0 +1,5 @@
+# Allow all crawlers. Update the Sitemap URL to your production domain before launch.
+User-agent: *
+Allow: /
+
+Sitemap: https://nexorasystems.example/sitemap.xml

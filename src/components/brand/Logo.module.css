@@ -1,0 +1,53 @@
+.wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.mark {
+  flex-shrink: 0;
+}
+
+.frame {
+  stroke: var(--color-border-strong);
+  stroke-width: 1.5;
+  fill: var(--color-surface-elevated);
+}
+
+.node {
+  fill: var(--color-accent);
+  opacity: 0.92;
+}
+
+.nodeAccent {
+  fill: var(--color-accent-bright);
+  opacity: 0.95;
+}
+
+.links {
+  stroke: var(--color-text-muted);
+  stroke-width: 2;
+  opacity: 0.55;
+}
+
+.wordmark {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+}
+
+.sub {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
